@@ -1,0 +1,17 @@
+<h1>Take a survey!</h1>
+<ul>
+  <% @surveys.each do |survey| %>
+  <li><%= link_to survey.title, survey_path(survey) %></li>
+  <% end %>
+</ul>
+<button id="show_new_form">New Survey</button>
+<%= form_for @survey do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.fields_for :questions do |builder| %>
+    <%= render "question_fields", f: builder %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
+

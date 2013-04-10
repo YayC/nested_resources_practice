@@ -1,0 +1,14 @@
+<h1>Results for "<%= @survey.title %>"</h1>
+<%= link_to "Home", root_path %>
+<ol>
+<% @questions.each_with_index do |q, i| %>
+  <li>
+    <%= q.content %>
+    <ul>
+      <% q.choices.each_with_index do |c, j| %>
+        <li><%= c.content %>: <%= pluralize(@results_array[i][j], 'respondent') %> </li>
+      <% end %>
+    </ul>
+  </li>
+<% end %>
+</ol>
